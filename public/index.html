@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>清朝老片 - 视频降质工具</title>
+</head>
+<body>
+  <h1>清朝老片</h1>
+  <p>这是基础版本，功能正在开发中。</p>
+
+  <h2>上传视频（先打通接口）</h2>
+  <input type="file" id="file" accept="video/*" />
+  <button id="btn">上传到 /api/upload</button>
+
+  <pre id="out" style="white-space:pre-wrap;background:#f6f8fa;padding:12px;"></pre>
+
+  <script>
+    const btn = document.getElementById('btn');
+    const fileInput = document.getElementById('file');
+    const out = document.getElementById('out');
+
+    btn.onclick = async () => {
+      const f = fileInput.files?.[0];
+      if (!f) {
+        alert('请选择一个视频文件');
+        return;
+      }
+      const fd = new FormData();
+      fd.append('file', f);
+      out.textContent = '上传中...';
+
+      try {
+        const res = await fetch('/api/upload', { method: 'POST', body: fd });
+        const json = await res.json();
+        out.textContent = JSON.stringify(json, null, 2);
+      } catch (e) {
+        out.textContent = '出错：' + e;
+      }
+    };
+  </script>
+</body>
+</html>
