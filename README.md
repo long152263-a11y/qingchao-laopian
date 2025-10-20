@@ -1,17 +1,6 @@
-# Audio Process API (FastAPI on Vercel)
+# 清朝老片
 
-Endpoints:
-- `GET /` health
-- `POST /upload` accepts video/audio file (multipart)
-
-Writes to `/tmp` (the only writable path on Vercel Serverless).
-
-## Local run
-pip install -r requirements.txt
-uvicorn api.index:app --reload --port 8000
-
-## Deploy on Vercel
-- New Project -> drag & drop this folder or import from Git
-- After deploy, open your URL:
-  - `GET /` returns health JSON
-  - `POST /upload` with `file` field works
+这是基础部署版本，后续会加入以下功能：
+- 视频画质压低处理（类似《10.20任务》）
+- 音频失真 / 炸麦 / 低质麦克风效果，提供 3 档可选
+- 上传 → 处理 → 看广告 → 下载流程
