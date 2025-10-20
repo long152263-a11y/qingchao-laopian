@@ -21,7 +21,7 @@ TMP_DIR = "/tmp"  # Vercel 运行时可写目录
 def ping():
     return {"ok": True, "msg": "API alive. Use POST /api/upload"}
 
-@app.post("/upload")
+@app.post("/api/upload")   # ✅这里修改了
 async def upload(file: UploadFile = File(...)):
     ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
     safe_name = f"{ts}_{file.filename or 'upload.bin'}"
